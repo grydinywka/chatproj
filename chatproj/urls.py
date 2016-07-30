@@ -16,9 +16,10 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 
-from chatapp.views import EnterView
+from chatapp.views import EnterView, chatlist
 
 urlpatterns = [
     url(r'^$', EnterView.as_view(), name='home'),
+    url(r'^chat/$', chatlist, name='chat'),
     url(r'^admin/', admin.site.urls),
 ]

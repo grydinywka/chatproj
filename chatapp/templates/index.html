@@ -1,2 +1,20 @@
 {% extends "base.html" %}
 {% load static from staticfiles %}
+
+{% block meta_title %}Login{% endblock meta_title %}
+
+{% block content %}
+<div class="text-center" id="buttons-ch">
+
+    <div>
+        <a href="#">via Facebook</a>
+    </div>
+    <div>
+        <a href="#" class="btn btn-default btn-lg">Login</a>
+    </div>
+    <div>
+        <a class="btn btn-default btn-lg" href="">Register</a>
+    </div>
+
+</div>
+{% endblock %}

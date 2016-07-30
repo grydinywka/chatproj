@@ -8,3 +8,7 @@ class EnterView(TemplateView):
     """
 
     template_name = 'index.html'
+
+
+def chatlist(request):
+    return render(request,'chat.html', {})
