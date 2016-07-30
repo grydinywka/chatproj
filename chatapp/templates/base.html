@@ -5,7 +5,7 @@
 
 	<head>
 		<meta charset="UTF-8"/>
-		<title>Chat {% block meta_title %}{% endblock meta_title %}</title>
+		<title>Chat room {% block meta_title %}{% endblock meta_title %}</title>
 		<meta name="description"
 			  value='App for chat' >
 		<meta name="viewport" content="width=device-width, initial-scale=1" >
@@ -25,9 +25,18 @@
                 <div class="col-xs-offset-3 col-xs-6">
                     <h1 class="text-center">Chat room!</h1>
                 </div>
+				{% if user.is_authenticated %}
+				<div class="col-xs-3 text-right" id="user-toolbar">
+					<p>{{ user.get_full_name|default:user.username }}</p>
+					<p> {{ user.email }}</p>
+					<p><a href="{% url 'users:auth_logout' %}">Logout</a></p>
+				</div>
+				{% endif %}
+
             </div>
 
 			<div class="row">
+				<hr class="divider">
 				<div class="col-xs-12">
 					<!-- Status Message -->
 					{% block status_message %}
