@@ -1,7 +1,13 @@
 from django.shortcuts import render
 from django.views.generic.base import TemplateView
+from django.views.generic import ListView
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
+
+from django.utils.decorators import method_decorator
+from django.contrib.auth.decorators import login_required
+
+from .models import Notice
 
 
 class EnterView(TemplateView):
@@ -17,5 +23,12 @@ class EnterView(TemplateView):
         return super(EnterView, self).dispatch(request, *args, **kwargs)
 
 
-def chatlist(request):
-    return render(request,'chat.html', {})
+class ChatView(ListView):
+    model = Notice
+    queryset = Notice.objects.all()
+    template_name = 'chat.html'
+    context_object_name = 'notices'
+
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super(ChatView, self).dispatch(request, *args, **kwargs)

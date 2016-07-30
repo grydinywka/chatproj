@@ -4,5 +4,14 @@
 {% block meta_title %}- Chat{% endblock meta_title %}
 
 {% block content %}
-<p>Here will be chat page</p>
+{% for notice in notices %}
+    <ul class="list-group">
+        <li class="{% if user.username != notice.user.username %}text-right{% endif %} list-group-item">
+            ({{ notice.created|date:"Y-M-d H:i:s" }}) {{ notice.user.get_full_name|default:notice.user.username }}
+            <p>{{ notice.content }}</p>
+        </li>
+    </ul>
+    {% empty %}
+    <p>There is neither message!</p>
+{% endfor %}
 {% endblock %}

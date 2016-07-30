@@ -18,12 +18,12 @@ from django.contrib import admin
 from django.contrib.auth import views as auth_views
 from django.views.generic.base import RedirectView
 
-from chatapp.views import EnterView, chatlist
+from chatapp.views import EnterView, ChatView
 from user_auth.views import CustomLoginView
 
 urlpatterns = [
     url(r'^$', EnterView.as_view(), name='home'),
-    url(r'^chat/$', chatlist, name='chat'),
+    url(r'^chat/$', ChatView.as_view(), name='chat'),
     url(r'^admin/', admin.site.urls),
 
     # User Related urls

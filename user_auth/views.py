@@ -4,7 +4,6 @@ from django.views.generic.base import TemplateView
 from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect
 
-
 class CustomLoginView(TemplateView):
     """
         View for login page
