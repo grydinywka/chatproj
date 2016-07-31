@@ -6,14 +6,13 @@
 {% block content %}
 <div class="text-center" id="buttons-ch">
 
-    <div>
-        <a href="#">via Facebook</a>
+    <div class="enter">
+        <a href="{% url 'users:auth_login' %}" class="btn btn-default btn-lg"><span
+                class="glyphicon glyphicon-log-in"></span> Login</a>
     </div>
-    <div>
-        <a href="{% url 'users:auth_login' %}" class="btn btn-default btn-lg">Login</a>
-    </div>
-    <div>
-        <a href="{% url 'users:registration_register' %}" class="btn btn-default btn-lg">Register</a>
+    <div class="enter">
+        <a href="{% url 'users:registration_register' %}" class="btn btn-default btn-lg"><span
+                class="glyphicon glyphicon-magnet"></span> Sign Up</a>
     </div>
 
 </div>
