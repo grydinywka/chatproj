@@ -1,3 +1,6 @@
+import datetime
+import time
+
 from django.shortcuts import render
 from django.views.generic.base import TemplateView
 from django.views.generic import CreateView
@@ -31,7 +34,9 @@ def addnotice(request):
             if content != '':
                 notice = Notice(content=content, user=user)
                 notice.save()
-                return JsonResponse({'content': content, 'username': user.username, 'created': notice.created})
+                return JsonResponse({'content': content, 'username': user.username, 'created': time.strftime(
+                    '%Y-%b-%d %H:%M:%S')})
+
             else:
                 return JsonResponse({'content_error': 'Message is required!'})
 
