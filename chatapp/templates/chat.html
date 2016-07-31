@@ -4,6 +4,7 @@
 {% block meta_title %}- Chat{% endblock meta_title %}
 
 {% block content %}
+<div id="msg-list">
 {% for notice in notices %}
     <ul class="list-group">
         <li class="{% if user.username != notice.user.username %}text-right{% endif %} list-group-item">
@@ -11,7 +12,22 @@
             <p>{{ notice.content }}</p>
         </li>
     </ul>
-    {% empty %}
+{% empty %}
     <p>There is neither message!</p>
 {% endfor %}
+</div>
+
+<form action="{% url 'add_notice' %}" method="POST" enctype="multipart/form-data" id="new-msg-form">
+    {% csrf_token %}
+
+    <div>
+        <span id="notice-error" class="help-block"></span>
+        <div class="input-group">
+            <input type="text" name="content" id="content" class="form-control" placeholder="Input message here...">
+            <span class="input-group-btn">
+                <button class="btn btn-primary" type="submit" id="add_notice" name="add_notice">Send Message!</button>
+            </span>
+        </div>
+    </div>
+</form>
 {% endblock %}

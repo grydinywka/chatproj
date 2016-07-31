@@ -1,7 +1,8 @@
 from django.shortcuts import render
 from django.views.generic.base import TemplateView
+from django.views.generic import CreateView
 from django.views.generic import ListView
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, JsonResponse
 from django.core.urlresolvers import reverse
 
 from django.utils.decorators import method_decorator
@@ -10,25 +11,29 @@ from django.contrib.auth.decorators import login_required
 from .models import Notice
 
 
-class EnterView(TemplateView):
-    """
-        View for serving home(index) page
-    """
-
-    template_name = 'index.html'
-
-    def dispatch(self, request, *args, **kwargs):
-        if request.user.is_authenticated():
-            return HttpResponseRedirect(reverse('chat'))
-        return super(EnterView, self).dispatch(request, *args, **kwargs)
+def home(request):
+    if request.user.is_authenticated():
+        return HttpResponseRedirect(reverse('chat'))
+    return render(request, 'index.html', {})
 
 
-class ChatView(ListView):
-    model = Notice
-    queryset = Notice.objects.all()
-    template_name = 'chat.html'
-    context_object_name = 'notices'
+@login_required
+def chat(request):
+    return render(request, 'chat.html', {'notices': Notice.objects.all()})
 
-    @method_decorator(login_required)
-    def dispatch(self, request, *args, **kwargs):
-        return super(ChatView, self).dispatch(request, *args, **kwargs)
+
+def addnotice(request):
+    if request.method == 'POST':
+        if request.POST.get('add_notice') is not None:
+            content = request.POST.get('content')
+            user = request.user
+
+            if content != '':
+                notice = Notice(content=content, user=user)
+                notice.save()
+                return JsonResponse({'content': content, 'username': user.username, 'created': notice.created})
+            else:
+                return JsonResponse({'content_error': 'Message is required!'})
+
+    return HttpResponseRedirect(reverse('chat'))
+

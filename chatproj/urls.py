@@ -17,18 +17,22 @@ from django.conf.urls import url, include
 from django.contrib import admin
 from django.contrib.auth import views as auth_views
 from django.views.generic.base import RedirectView
+from django.views.generic import CreateView
 
-from chatapp.views import EnterView, ChatView
-from user_auth.views import CustomLoginView
+from chatapp.views import home, chat, addnotice
+from user_auth.views import custom_login
+
 
 urlpatterns = [
-    url(r'^$', EnterView.as_view(), name='home'),
-    url(r'^chat/$', ChatView.as_view(), name='chat'),
+    url(r'^$', home, name='home'),
+    url(r'^chat/$', chat, name='chat'),
+    url(r'^add_notice/$', addnotice, name='add_notice'),
+
     url(r'^admin/', admin.site.urls),
 
     # User Related urls
     url(r'^users/logout/$', auth_views.logout, kwargs={'next_page': 'home'}, name='auth_logout'),
-    url(r'^users/login/$', CustomLoginView.as_view(), name='auth_login'),
+    url(r'^users/login/$', custom_login, name='auth_login'),
     url(r'^register/complete/$', RedirectView.as_view(pattern_name='chat'), name='registration_complete'),
     url(r'^users/', include('registration.backends.simple.urls', namespace='users')),
 ]
