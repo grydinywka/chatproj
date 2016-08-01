@@ -8,11 +8,11 @@
     <ul class="list-group">
     {% for notice in notices %}
         <li class="{% if user.username != notice.user.username %}text-right{% endif %} list-group-item">
-            ({{ notice.created|date:"Y-M-d H:i:s" }}) <strong>{{ notice.user.get_full_name|default:notice.user.username }}</strong>
+            ({{ notice.created|date:"Y-M-d H:i:s" }}) <strong>{{ notice.user.username }}</strong>
             <p>{{ notice.content }}</p>
         </li>
     {% empty %}
-        <li>There is neither message!</li>
+        <li class="list-group-item">There is neither message!</li>
     {% endfor %}
     </ul>
 </div>
