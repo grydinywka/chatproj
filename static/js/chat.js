@@ -42,7 +42,9 @@ function appendNotice() {
                     );
 //                    getNotices();
                 }
+
                 scrollToBottom();
+                $('#counter span span').text($('#content').val().length);
             },
             'error': function() {
                 alert('Error on server');
@@ -68,9 +70,16 @@ function getNotices() {
 //    scrollToBottom();
 }
 
+function counter() {
+//    $('#counter span span').text($('#content').val().length);
+    $('#content').keyup(function() {
+        $('#counter span span').text($(this).val().length);
+    });
+}
+
 $(document).ready(function() {
     scrollToBottom();
     appendNotice();
     setInterval(getNotices, 1000);
-
+    counter();
 });

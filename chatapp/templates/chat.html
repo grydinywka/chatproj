@@ -22,8 +22,10 @@
 
     <div>
         <span id="notice-error" class="help-block"></span>
+        <div id="counter" ><span class="bg-info"><span>0</span> / 254</span></div>
         <div class="input-group">
-            <input type="text" name="content" id="content" class="form-control" placeholder="Input message here...">
+            <input type="text" name="content" id="content" class="form-control" placeholder="Input message here..."
+                   maxlength="254">
             <span class="input-group-btn">
                 <button class="btn btn-primary" type="submit" id="add_notice" name="add_notice">Send Message!</button>
             </span>
