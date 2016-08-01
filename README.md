@@ -28,7 +28,7 @@ $ source bin/activate
 
 (chat)$ git clone git@github.com:grydinywka/chatproj.git
 
-(chat)$ cd board_rec/
+(chat)$ cd chatproj/
 
 (chat)$ pip install -r requirements.txt
 
