@@ -4,12 +4,10 @@
     margin-top: 30px;
 }
 
-/*
-#messages {
-    margin-top: 170px;
-}
-*/
-
 .enter {
     margin: 20px;
+}
+
+#footer {
+    margin-bottom: 10px;
 }

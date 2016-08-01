@@ -23,14 +23,18 @@
 				<div class="navbar-header">
 					<span class="navbar-brand">Chat room!</span>
 				</div>
+				{% if user.is_authenticated %}
 				<ul class="nav navbar-nav navbar-right">
-					{% if user.is_authenticated %}
 					<li><a><span class="glyphicon glyphicon-user"></span>
 						{{ user.username }}</a></li>
 					<li><a><span class="glyphicon glyphicon-envelope"></span> {{ user.email }}</a></li>
 					<li><a href="{% url 'users:auth_logout' %}"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
-					{% endif %}
 				</ul>
+				{% else %}
+				<ul class="nav navbar-nav">
+					<li><a href="{% url 'home' %}">home</a></li>
+				</ul>
+				{% endif %}
 			</div>
 		</nav>
        	<!-- Start Container -->
@@ -55,7 +59,7 @@
 			</div>
 
             <div class="row">
-				<div class="col-xs-4"><h2>{% block title %}{% endblock title %}</h2></div>
+				<div class="col-xs-8"><h2>{% block title %}{% endblock title %}</h2></div>
 			</div>
 
 			<!-- Start Content -->
@@ -70,7 +74,7 @@
 			<div class="row" id="footer">
                 <hr class="divider">
 				<div class="col-xs-12">
-					<span class="glyphicon glyphicon-copyright-mark"></span> 2016 Chat
+					<span class="glyphicon glyphicon-copyright-mark"></span> 2016 Chat room
 				</div>
 			</div>
 			<!-- End Footer -->

@@ -58,14 +58,11 @@ function getNotices() {
         var messages_from_chat = $('div#msg-list ul');
 
         if ( messages_from_db.children().length > messages_from_chat.children().length ) {
-//            alert(messages_from_db.children().length);
-//            alert(messages_from_chat.children().length);
             messages_from_chat.html(messages_from_db.children());
             if ( $('body').prop('scrollHeight') - $(window).scrollTop() < 2000 ) {
                 scrollToBottom();
             }
         }
-//        $('div#msg-list ul')
     });
 
 //    scrollToBottom();
@@ -74,6 +71,6 @@ function getNotices() {
 $(document).ready(function() {
     scrollToBottom();
     appendNotice();
-    setInterval(getNotices, 500);
+    setInterval(getNotices, 1000);
 
 });
