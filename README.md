@@ -1,5 +1,4 @@
 # chatproj
-test app for 'Jellyfish' company
 
 For looking app 'alive', follow 
 https://chat-room-for-you.herokuapp.com/
